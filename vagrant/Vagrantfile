@@ -16,31 +16,31 @@ Vagrant.configure("2") do |config|
     # Control Node 1
     config.vm.define "control1" do |control1|
         control1.vm.hostname = "control1"
-        control1.vm.network "private_network", ip: "192.168.30.38"
+        control1.vm.network "private_network", ip: "192.168.56.38"
     end
 
     # Control Node 2
     config.vm.define "control2" do |control2|
         control2.vm.hostname = "control2"
-        control2.vm.network "private_network", ip: "192.168.30.39"
+        control2.vm.network "private_network", ip: "192.168.56.39"
     end
 
     # Control Node 3
     config.vm.define "control3" do |control3|
         control3.vm.hostname = "control3"
-        control3.vm.network "private_network", ip: "192.168.30.40"
+        control3.vm.network "private_network", ip: "192.168.56.40"
     end
 
     # Worker Node 1
     config.vm.define "node1" do |node1|
         node1.vm.hostname = "node1"
-        node1.vm.network "private_network", ip: "192.168.30.41"
+        node1.vm.network "private_network", ip: "192.168.56.41"
     end
 
     # Worker Node 2
     config.vm.define "node2" do |node2|
         node2.vm.hostname = "node2"
-        node2.vm.network "private_network", ip: "192.168.30.42"
+        node2.vm.network "private_network", ip: "192.168.56.42"
     end
 
     config.vm.provision "ansible",type: "ansible", run: "never" do |ansible|
@@ -69,10 +69,10 @@ Vagrant.configure("2") do |config|
             "server_init_args" => "--cluster-init --token {{ k3s_token }} {{ extra_server_args | default('') }}"
           },
           "control2" => {
-            "server_init_args" => "--server https://192.168.30.38:6443 --token {{ k3s_token }} {{ extra_server_args | default('') }}"
+            "server_init_args" => "--server https://192.168.56.38:6443 --token {{ k3s_token }} {{ extra_server_args | default('') }}"
           },
           "control3" => {
-            "server_init_args" => "--server https://192.168.30.38:6443 --token {{ k3s_token }} {{ extra_server_args | default('') }}"
+            "server_init_args" => "--server https://192.168.56.38:6443 --token {{ k3s_token }} {{ extra_server_args | default('') }}"
           }
         }
     end
